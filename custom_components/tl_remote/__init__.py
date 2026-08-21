@@ -288,18 +288,30 @@ class RemoteConnection:
                 attr["friendly_name"] = f"{self._prefix}{friendly}"
 
         registry = er.async_get(self._hass)
-        reg_entry = registry.async_get_or_create(
-            domain=domain,
-            platform=DOMAIN,
-            unique_id=self._unique_id_for(entity_id),
-            suggested_object_id=object_id,
-            config_entry=self._entry,
-        )
+        # HA 2026.3+ renamed the keyword: config_entry_id -> config_entry
+        reg_entry = self._async_registry_get_or_create(registry, domain, object_id, entity_id)
         # Use the entity id assigned by the registry to keep states and
         # registry consistent (avoids "_2" style mismatches).
         assigned = reg_entry.entity_id or self._prefixed_entity_id(entity_id)
         self._entities.add(assigned)
         self._hass.states.async_set(assigned, state, attr)
+
+    def _async_registry_get_or_create(
+        self, registry: er.EntityRegistry, domain: str, object_id: str, entity_id: str
+    ):
+        """Call registry.async_get_or_create with the right kwarg for this HA."""
+        kwargs = {
+            "domain": domain,
+            "platform": DOMAIN,
+            "unique_id": self._unique_id_for(entity_id),
+            "suggested_object_id": object_id,
+        }
+        params = er.async_get_or_create.__code__.co_varnames
+        if "config_entry" in params:
+            kwargs["config_entry"] = self._entry
+        else:
+            kwargs["config_entry_id"] = self._entry.entry_id
+        return registry.async_get_or_create(**kwargs)
 
     @callback
     def _remove_entity(self, entity_id: str) -> None:
