@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TL Remote — role of this HA",
+        "description": "Node — this HA exposes devices. Main — this HA connects to another HA.",
+        "data": {
+          "type": "Role"
+        }
+      },
+      "connection": {
+        "title": "Connect to node",
+        "description": "Enter the address of the source HA (node) and its long-lived access token (Profile → Tokens).",
+        "data": {
+          "host": "Address (IP or hostname)",
+          "port": "Port",
+          "access_token": "Long-lived token of the node",
+          "secure": "HTTPS/WSS",
+          "verify_ssl": "Verify SSL certificate"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect",
+      "invalid_auth": "Invalid token or no access",
+      "missing_endpoint": "TL Remote (node) is not installed on the remote HA",
+      "unknown": "Unknown error"
+    },
+    "abort": {
+      "already_configured": "Already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "expose": {
+        "title": "Which devices to expose",
+        "description": "Select the entities of this HA that should appear on the main HA instance.",
+        "data": {
+          "exposed_entities": "Entities to export"
+        }
+      },
+      "prefix": {
+        "title": "Entity prefix",
+        "description": "Optional prefix added to incoming entity ids.",
+        "data": {
+          "entity_prefix": "Prefix"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "connection": {
+        "name": "TL Remote {host}:{port}",
+        "state": {
+          "on": "Connected",
+          "off": "Disconnected"
+        }
+      }
+    }
+  }
+}
