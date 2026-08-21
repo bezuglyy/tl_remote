@@ -1,0 +1,17 @@
+{
+  "domain": "tl_remote",
+  "name": "TL Remote",
+  "codeowners": [
+    "@techlan"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "http"
+  ],
+  "documentation": "https://github.com/techlan-su/tl_remote",
+  "integration_type": "hub",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/techlan-su/tl_remote/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
