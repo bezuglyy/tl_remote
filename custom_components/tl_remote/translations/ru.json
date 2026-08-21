@@ -1,0 +1,62 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TL Remote — роль этого HA",
+        "description": "Узел — этот HA отдаёт устройства. Приёмник — этот HA подключается к другому HA.",
+        "data": {
+          "type": "Роль"
+        }
+      },
+      "connection": {
+        "title": "Подключение к узлу",
+        "description": "Укажите адрес HA-источника (узла) и его долгоживущий токен (Профиль → Токены).",
+        "data": {
+          "host": "Адрес (IP или hostname)",
+          "port": "Порт",
+          "access_token": "Долгоживущий токен узла",
+          "secure": "HTTPS/WSS",
+          "verify_ssl": "Проверять SSL-сертификат"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Не удалось подключиться",
+      "invalid_auth": "Неверный токен или нет доступа",
+      "missing_endpoint": "На удалённом HA не установлена интеграция TL Remote (узел)",
+      "unknown": "Неизвестная ошибка"
+    },
+    "abort": {
+      "already_configured": "Уже настроено"
+    }
+  },
+  "options": {
+    "step": {
+      "expose": {
+        "title": "Какие устройства отдавать",
+        "description": "Выберите сущности этого HA, которые должны появляться на главном HA (приёмнике).",
+        "data": {
+          "exposed_entities": "Сущности для экспорта"
+        }
+      },
+      "prefix": {
+        "title": "Префикс сущностей",
+        "description": "Необязательный префикс, добавляемый к именам приходящих сущностей.",
+        "data": {
+          "entity_prefix": "Префикс"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "connection": {
+        "name": "TL Remote {host}:{port}",
+        "state": {
+          "on": "Подключено",
+          "off": "Отключено"
+        }
+      }
+    }
+  }
+}
