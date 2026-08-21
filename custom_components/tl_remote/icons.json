@@ -1,0 +1,12 @@
+{
+  "entity": {
+    "sensor": {
+      "connection": {
+        "state": {
+          "on": "mdi:server-network",
+          "off": "mdi:server-network-off"
+        }
+      }
+    }
+  }
+}
