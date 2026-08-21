@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#03a9f4"/>
+      <stop offset="1" stop-color="#0d47a1"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#26c6da"/>
+      <stop offset="1" stop-color="#00695c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- left HA node -->
+  <rect x="70" y="270" width="340" height="500" rx="90" fill="url(#blue)"/>
+  <!-- right HA node -->
+  <rect x="614" y="270" width="340" height="500" rx="90" fill="url(#teal)"/>
+
+  <!-- house glyph left -->
+  <g fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 470 L240 380 L330 470"/>
+    <path d="M175 450 L175 640 L305 640 L305 450"/>
+    <rect x="215" y="520" width="50" height="120" rx="8" fill="#ffffff" stroke="none"/>
+    <circle cx="240" cy="430" r="12" fill="#ffffff" stroke="none"/>
+  </g>
+
+  <!-- house glyph right -->
+  <g fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M694 470 L784 380 L874 470"/>
+    <path d="M719 450 L719 640 L849 640 L849 450"/>
+    <rect x="759" y="520" width="50" height="120" rx="8" fill="#ffffff" stroke="none"/>
+    <circle cx="784" cy="430" r="12" fill="#ffffff" stroke="none"/>
+  </g>
+
+  <!-- top arrow (right) -->
+  <g stroke="#ffb300" stroke-width="44" stroke-linecap="round" fill="none">
+    <path d="M520 330 L620 330"/>
+    <path d="M560 280 L620 330 L560 380"/>
+  </g>
+  <!-- bottom arrow (left) -->
+  <g stroke="#ffb300" stroke-width="44" stroke-linecap="round" fill="none">
+    <path d="M504 700 L404 700"/>
+    <path d="M464 650 L404 700 L464 750"/>
+  </g>
+</svg>
