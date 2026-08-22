@@ -289,7 +289,9 @@ class RemoteConnection:
 
         registry = er.async_get(self._hass)
         # HA 2026.3+ renamed the keyword: config_entry_id -> config_entry
-        reg_entry = self._async_registry_get_or_create(registry, domain, object_id, entity_id)
+        reg_entry = self._async_registry_get_or_create(
+            registry, domain, object_id, entity_id
+        )
         # Use the entity id assigned by the registry to keep states and
         # registry consistent (avoids "_2" style mismatches).
         assigned = reg_entry.entity_id or self._prefixed_entity_id(entity_id)
@@ -306,7 +308,7 @@ class RemoteConnection:
             "unique_id": self._unique_id_for(entity_id),
             "suggested_object_id": object_id,
         }
-        params = er.async_get_or_create.__code__.co_varnames
+        params = er.EntityRegistry.async_get_or_create.__code__.co_varnames
         if "config_entry" in params:
             kwargs["config_entry"] = self._entry
         else:
