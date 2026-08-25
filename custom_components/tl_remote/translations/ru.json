@@ -18,6 +18,17 @@
           "secure": "HTTPS/WSS",
           "verify_ssl": "Проверять SSL-сертификат"
         }
+      },
+      "reconfigure": {
+        "title": "Изменение настроек подключения",
+        "description": "Измените параметры подключения к узлу. Токен — долгоживущий токен узла (Профиль → Токены).",
+        "data": {
+          "host": "Адрес (IP или hostname)",
+          "port": "Порт",
+          "access_token": "Долгоживущий токен узла",
+          "secure": "HTTPS/WSS",
+          "verify_ssl": "Проверять SSL-сертификат"
+        }
       }
     },
     "error": {
@@ -27,7 +38,9 @@
       "unknown": "Неизвестная ошибка"
     },
     "abort": {
-      "already_configured": "Уже настроено"
+      "already_configured": "Уже настроено",
+      "reconfigure_successful": "Настройки подключения обновлены",
+      "reconfigure_not_supported": "Реконфигурация доступна только для приёмника"
     }
   },
   "options": {
