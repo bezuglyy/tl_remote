@@ -18,6 +18,17 @@
           "secure": "HTTPS/WSS",
           "verify_ssl": "Verify SSL certificate"
         }
+      },
+      "reconfigure": {
+        "title": "Change connection settings",
+        "description": "Change the connection parameters to the node. Token — long-lived access token of the node (Profile → Tokens).",
+        "data": {
+          "host": "Address (IP or hostname)",
+          "port": "Port",
+          "access_token": "Long-lived token of the node",
+          "secure": "HTTPS/WSS",
+          "verify_ssl": "Verify SSL certificate"
+        }
       }
     },
     "error": {
@@ -27,7 +38,9 @@
       "unknown": "Unknown error"
     },
     "abort": {
-      "already_configured": "Already configured"
+      "already_configured": "Already configured",
+      "reconfigure_successful": "Connection settings updated",
+      "reconfigure_not_supported": "Reconfiguration is only available for the main instance"
     }
   },
   "options": {
