@@ -191,10 +191,23 @@ class RemoteConnection:
         # Refresh allowed list before connecting.
         await self._refresh_allowed()
 
+        # Explicit SSL context for wss: with verify_ssl disabled we must pass
+        # a no-verify context directly (session-level ssl=False is unreliable
+        # for WebSocket handshakes). Build it without create_default_context()
+        # to avoid a blocking CA-path load inside the event loop.
+        ws_ssl: aiohttp.SSLContext | None = None
+        if self._secure and not self._verify_ssl:
+            import ssl as _ssl
+
+            ws_ssl = _ssl.SSLContext(_ssl.PROTOCOL_TLS_CLIENT)
+            ws_ssl.check_hostname = False
+            ws_ssl.verify_mode = _ssl.CERT_NONE
+
         ws = await self._session.ws_connect(
             self._ws_url(),
             max_msg_size=DEFAULT_MAX_MSG_SIZE,
             heartbeat=55,
+            ssl=ws_ssl,
         )
         self._ws = ws
         self._report_state(True)
