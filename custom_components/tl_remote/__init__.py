@@ -321,12 +321,13 @@ class RemoteConnection:
             "unique_id": self._unique_id_for(entity_id),
             "suggested_object_id": object_id,
         }
-        params = er.EntityRegistry.async_get_or_create.__code__.co_varnames
-        if "config_entry" in params:
-            kwargs["config_entry"] = self._entry
-        else:
-            kwargs["config_entry_id"] = self._entry.entry_id
-        return registry.async_get_or_create(**kwargs)
+        # HA меняла имя аргумента (config_entry_id -> config_entry). Интроспекция через
+        # __code__.co_varnames ломается на обёртках и ленивых аннотациях (HA 2026.10 / Python 3.14),
+        # поэтому пробуем новый аргумент и откатываемся на старый по TypeError.
+        try:
+            return registry.async_get_or_create(**kwargs, config_entry=self._entry)
+        except TypeError:
+            return registry.async_get_or_create(**kwargs, config_entry_id=self._entry.entry_id)
 
     @callback
     def _remove_entity(self, entity_id: str) -> None:
